@@ -1,7 +1,7 @@
 {
   "name": "C# (.NET 8 & 9)",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "DockerFile"
   },
 
   "customizations": {
