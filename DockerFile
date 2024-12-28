@@ -1,0 +1,25 @@
+# Utiliser l'image de base SDK de .NET 8
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base
+
+# Installer .NET 9 dans le même conteneur
+RUN apt-get update && \
+    apt-get install -y wget && \
+    wget https://download.visualstudio.microsoft.com/download/pr/cfd5b9a7-dbc9-4d73-9c97-eac7b03f6b25/99a063927c7c3f47be17dbb015d3f682/dotnet-sdk-9.0.100-linux-x64.tar.gz -O dotnet-sdk-9.0.100-linux-x64.tar.gz && \
+    mkdir -p /usr/share/dotnet && \
+    tar -xvf dotnet-sdk-9.0.100-linux-x64.tar.gz -C /usr/share/dotnet && \
+    rm dotnet-sdk-9.0.100-linux-x64.tar.gz
+
+# Ajouter .NET au PATH
+ENV PATH=$PATH:/usr/share/dotnet
+
+# Vérifier les versions installées de .NET
+RUN dotnet --list-sdks
+
+# Mettre en place les configurations pour VS Code
+COPY .devcontainer/devcontainer.json /workspace/.devcontainer/devcontainer.json
+
+# Définir le répertoire de travail
+WORKDIR /workspace
+
+# Commande d'exécution par défaut (par exemple, un terminal)
+CMD [ "bash" ]

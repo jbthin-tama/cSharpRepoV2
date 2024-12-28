@@ -1,0 +1,38 @@
+{
+  "name": "C# (.NET 8 & 9)",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "streetsidesoftware.code-spell-checker", // Correcteur orthographique
+        "ms-dotnettools.csharp",                 // Extension principale pour C#
+        "ms-vscode.vscode-typescript-next",      // Support pour TypeScript, utile pour les outils associés
+        "formulahendry.dotnet",                  // Gestion des projets .NET
+        "k--kato.docomment"                      // Générateur de commentaires XML pour C#
+      ]
+    }
+  },
+
+  "portsAttributes": {
+    "5000": {
+      "label": "Hello Remote World",
+      "onAutoForward": "notify"
+    },
+    "5001": {
+      "protocol": "https"
+    }
+  },
+
+  // Utilisez 'forwardPorts' pour rendre les ports internes du conteneur accessibles localement.
+  // "forwardPorts": [5000, 5001],
+
+  // Utilisez 'postCreateCommand' pour exécuter des commandes après la création du conteneur.
+  // "postCreateCommand": "dotnet restore",
+
+  // Décommentez pour vous connecter en tant que root. Plus d'infos: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+}
